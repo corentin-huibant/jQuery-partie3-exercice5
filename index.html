@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="jquery-2.2.4.js"></script>
+    <title>jQuery : exercice 5 - partie 3</title>
+  </head>
+  <body>
+    <form action="index.html" method="post">
+      <input type="text" name="oneDirection" value="">
+      <div style = "width:50px; height:50px; background:black;">
+      </div>
+    </form>
+    <script>
+    $(function() {
+    //création d'une fonction qui, si on applique une touche (keypress) à l'élément input...
+      $('input').keypress(function(touch) {
+        //création d'une variable apply qui récupère l'ASCI des touches grace au fonction which ou keycode
+          var apply = touch.which || touch.keyCode;
+          // si j'appuis sur la key 39 (représente la direction de droite)...
+            if (apply == 39) {
+          // ma div marge à gauche (donc se déplace à droite) sur une incrémentation de 10px
+              $('div').css('margin-left' , '+=10px');
+            }else if (apply == 37) { //key 37 = direction de gauche
+              $('div').css('margin-left' , '-=10px'); //réduit la marge de gauche de 10 px par incrémentation
+            }else if (apply == 40) { //key 40 = direction du bas
+              $('div').css('margin-top' , '+=10px');//marge supérieur de 10 px par incrémentation
+            }else if (apply == 38) { //key 38 = direction du haut
+              $('div').css('margin-top' , '-=10px');// réduit la marge supérier de 10 px par incrémentation
+            }else {
+            }
+             if ($('div').offset().left >= 1250) { //Si le positionnement (récupérer via offset) gauche de la div est supérieur à 1250px
+               $('div').css('margin-left' , '0px'); //la Div retourne à une marge gauche nulle (donc tout à gauche de l'écran)
+             }else if ($('div').offset().left <= 4) { //Si le positionnement (offset) gauche de la div est inférieur à 4px
+               $('div').css('margin-left' , '1250px'); //la Div prend une marge gauche de 1250px (et se place donc au bord droit de l'écran)
+             }else if ($('div').offset().top >= 588) { //Si le positionnement (offset) bas de la div est supérieur à 588px
+               $('div').css('margin-top' , '0px'); //la Div retourne à une marge gauche nulle (donc en haut de l'écran)
+             }else if ($('div').offset().top <= 4) { //Si le positionnement (offset) bas de la div est inférieur à 4px
+               $('div').css('margin-top' , '560px'); //la Div prend une marge haute de 560px (et se place donc en bas de l'écran)
+             }else {
+             }
+           })
+        })
+    </script>
+  </body>
+</html>
